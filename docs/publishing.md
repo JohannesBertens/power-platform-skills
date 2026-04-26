@@ -134,6 +134,7 @@ Pinned skills are skipped during updates.
 
 This repository uses Semver tags:
 
+- **`v1.0.3`** — fix: search full pac output for version, fail on unknown version instead of false "up to date"
 - **`v1.0.2`** — patch: parse version from pac output, use dotnet tool search instead of curl
 - **`v1.0.1`** — patch: improved version check in check-pac.sh, added NuGet latest check and upgrade suggestion
 - **`v1.0.0`** — initial release of `power-platform-connect`

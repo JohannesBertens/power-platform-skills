@@ -6,7 +6,7 @@ This document catalogs all Agent Skills available in this repository.
 
 | Skill | Description | Version | Scripts |
 |-------|-------------|---------|---------|
-| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.2 | `check-pac.sh` |
+| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.3 | `check-pac.sh` |
 
 ---
 
@@ -57,8 +57,8 @@ bash skills/power-platform-connect/scripts/check-pac.sh
 
 | Code | Meaning |
 |------|---------|
-| `0` | `pac` is installed (and either up to date, outdated with warning, or version could not be determined) |
-| `1` | `pac` not found; install instructions printed to stderr |
+| `0` | `pac` is installed and either up to date or outdated with warning |
+| `1` | `pac` not found, or installed version could not be determined |
 
 ### Activation Triggers
 
