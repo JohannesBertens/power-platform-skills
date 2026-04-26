@@ -134,8 +134,8 @@ Pinned skills are skipped during updates.
 
 This repository uses Semver tags:
 
+- **`v1.0.1`** — patch: improved version check in check-pac.sh, added NuGet latest check and upgrade suggestion
 - **`v1.0.0`** — initial release of `power-platform-connect`
-- **`v1.0.1`** — patch: bug fix in check script
 - **`v1.1.0`** — minor: new non-breaking skill content
 - **`v2.0.0`** — major: breaking changes to skill instructions
 

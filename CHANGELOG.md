@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-04-26
+
+### Changed
+
+- **power-platform-connect skill** — improved `check-pac.sh` and documentation
+  - Replaced `pac --version` (non-existent flag) with bare `pac` invocation
+  - Added installed version detection via `dotnet tool list --global`
+  - Added latest version check against the NuGet API (`api.nuget.org`)
+  - Added upgrade suggestion (`dotnet tool update --global Microsoft.PowerApps.CLI.Tool`) when installed version is outdated
+  - Updated `SKILL.md` with three-case flow: not installed, outdated, and up to date
+  - Removed incorrect `pac install latest` from all documentation
+  - Updated `docs/skills.md`, `docs/publishing.md`, and `README.md` to reflect new behavior
+
 ## [1.0.0] - 2026-04-26
 
 ### Added

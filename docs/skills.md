@@ -6,7 +6,7 @@ This document catalogs all Agent Skills available in this repository.
 
 | Skill | Description | Version | Scripts |
 |-------|-------------|---------|---------|
-| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation | v1.0.0 | `check-pac.sh` |
+| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.1 | `check-pac.sh` |
 
 ---
 
@@ -27,9 +27,12 @@ This document catalogs all Agent Skills available in this repository.
 
 When an agent encounters a Power Platform-related task, this skill activates and:
 
-1. Runs `check-pac.sh` to verify the `pac` CLI is installed and reports the version
-2. If `pac` is missing, provides the user with installation instructions
-3. Confirms readiness for Power Platform work once the CLI is available
+1. Runs `check-pac.sh` to verify the `pac` CLI is installed and reports its output
+2. Detects the installed version via `dotnet tool list --global`
+3. Fetches the latest version from the NuGet API and compares
+4. If `pac` is missing, provides the user with installation instructions
+5. If `pac` is outdated, suggests the upgrade command
+6. Confirms readiness for Power Platform work once the CLI is installed and up to date
 
 ### Files
 
@@ -42,7 +45,7 @@ skills/power-platform-connect/
 
 ### Bundled Script: `check-pac.sh`
 
-**Purpose:** Checks whether the `pac` CLI is available on `PATH` and reports its version.
+**Purpose:** Checks whether the `pac` CLI is available on `PATH`, detects the installed version via `dotnet tool list --global`, fetches the latest version from the NuGet API, and reports if an upgrade is available.
 
 **Usage (standalone):**
 
@@ -54,7 +57,7 @@ bash skills/power-platform-connect/scripts/check-pac.sh
 
 | Code | Meaning |
 |------|---------|
-| `0` | `pac` is installed; version printed to stdout |
+| `0` | `pac` is installed (and either up to date, outdated with warning, or version could not be determined) |
 | `1` | `pac` not found; install instructions printed to stderr |
 
 ### Activation Triggers
@@ -93,7 +96,6 @@ To install `pac`:
 
 ```bash
 dotnet tool install --global Microsoft.PowerApps.CLI.Tool
-pac install latest
 ```
 
 Reference: https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction
