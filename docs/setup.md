@@ -12,16 +12,20 @@ This guide covers everything needed to set up the `power-platform-skills` reposi
 
 ```
 power-platform-skills/
-├── .github/                    # GitHub configuration
+├── .github/
+│   └── agents/
+│       └── power-platform-developer.agent.md  # Copilot agent definition
 ├── .vscode/                    # VS Code settings
 ├── docs/                       # Documentation
 │   ├── setup.md                # This file — repository setup
 │   ├── skills.md               # Skills catalog and details
+│   ├── agents.md               # Agent definitions guide
 │   └── publishing.md           # Publishing and lifecycle management
 ├── plans/                      # Implementation plans and decisions
 ├── skills/                     # Agent Skills (primary skill directory)
 │   └── power-platform-connect/ # Skill: Power Platform CLI check
 │       ├── SKILL.md            # Skill definition (required)
+│       ├── README.md           # Detailed skill documentation
 │       └── scripts/            # Skill helper scripts
 │           └── check-pac.sh
 ├── LICENSE                     # MIT License
