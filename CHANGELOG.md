@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-04-26
+
+### Changed
+
+- **power-platform-connect skill** — improved version detection in `check-pac.sh`
+  - Parse installed version from `pac` output (e.g. `2.2.1+g666525f`) with fallback to `dotnet tool list --global`
+  - Use `dotnet tool search Microsoft.PowerApps.CLI.Tool --take 1` instead of curl-based NuGet API call
+  - Always display both installed and latest version for transparency
+
 ## [1.0.1] - 2026-04-26
 
 ### Changed
