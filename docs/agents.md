@@ -18,9 +18,7 @@ Agent profiles live in `.github/agents/`:
 
 ```
 .github/agents/
-├── solution-architect.agent.md
-├── dataverse-developer.agent.md
-└── power-platform-reviewer.agent.md
+└── power-platform-developer.agent.md
 ```
 
 For user-level agents (available across all projects), use `~/.github/agents/`.
@@ -106,6 +104,24 @@ Use a three-tier system:
 6. **Boundaries** — what not to do
 
 ## Example: Power Platform Agent
+
+The repository includes a ready-made agent at `.github/agents/power-platform-developer.agent.md`. Use it as a reference when creating additional agents.
+
+### Install the agent
+
+```bash
+# Project-level (current repo)
+mkdir -p .github/agents
+gh api repos/JohannesBertens/power-platform-skills/contents/.github/agents/power-platform-developer.agent.md \
+  --jq '.content' | base64 -d > .github/agents/power-platform-developer.agent.md
+
+# User-level (all repos)
+mkdir -p ~/.copilot/agents
+gh api repos/JohannesBertens/power-platform-skills/contents/.github/agents/power-platform-developer.agent.md \
+  --jq '.content' | base64 -d > ~/.copilot/agents/power-platform-developer.agent.md
+```
+
+### Template for new agents
 
 ```markdown
 ---
