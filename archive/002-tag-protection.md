@@ -66,7 +66,7 @@ Configure a repository ruleset that restricts who can create, update, or delete 
 ```
 
 This restricts:
-- **Creating** tags matching `v*`: allowed
+- **Creating** tags matching `v*`: allowed (no restriction)
 - **Updating** (force-pushing/moving) tags: blocked
 - **Deleting** tags: blocked
 - **Bypass**: repo admin only
@@ -106,7 +106,10 @@ gh api repos/JohannesBertens/power-platform-skills/rulesets \
   },
   "rules": [
     {
-      "type": "tag_creation"
+      "type": "update"
+    },
+    {
+      "type": "deletion"
     }
   ],
   "bypass_actors": [
