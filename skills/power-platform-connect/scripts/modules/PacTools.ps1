@@ -60,7 +60,9 @@ function Get-LatestPacVersion {
         }
         $versions = $response.versions
         if ($versions -and $versions.Count -gt 0) {
-            # Filter stable versions (no pre-release suffix)
+            # Filter stable versions (no pre-release suffix).
+            # pac uses 3-part versions (e.g. 1.2.3); this pattern intentionally excludes
+            # pre-release suffixes (-beta, -preview) and build metadata (+g…).
             $stable = $versions | Where-Object { $_ -match '^\d+\.\d+\.\d+$' }
             if ($stable) {
                 $latest = $stable[-1]

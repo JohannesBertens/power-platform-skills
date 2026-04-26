@@ -4,8 +4,12 @@
 # Pinned baseline (update here when upgrading):
 $PwshVersion = '7.6.1'
 $PwshMsiSha256 = @{
+    # SHA256 hashes for PowerShell $PwshVersion MSI installers.
+    # Update these when upgrading $PwshVersion.
+    # Obtain from: https://github.com/PowerShell/PowerShell/releases/tag/v<version>
+    # and verify against the .sha256 files published alongside each MSI release asset.
     'x64'  = 'A8BFB25D78A49A10A81E01EF00DF0CCAB68F7BBDCE16ABF1A1B41ADCC4DEE10F'
-    'arm64'= 'D14B8EB42DA0E1B8082DD14F89EF9A46B9B36B9DDDEE6F4EACD74FACBC07A2E'
+    'arm64'= 'D14B8EB42DA0E1B8082DD14F89EF9A46B9B36B9DDDEE6F4EACD74FACBC07A2EF'
 }
 
 $ErrorActionPreference = 'Stop'

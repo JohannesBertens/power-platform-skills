@@ -96,8 +96,8 @@ function Test-DotNetSdkPresent {
     $raw = & dotnet --version 2>&1
     $ver = Parse-SemVer ($raw | Out-String)
     if (-not $ver) { return $false }
-    # Accept any 10.x SDK
-    return $ver.StartsWith('10.')
+    # Accept any .NET 10.x SDK by comparing the major version numerically
+    return ([version]$ver).Major -eq 10
 }
 
 function Ensure-DotNetSdk {

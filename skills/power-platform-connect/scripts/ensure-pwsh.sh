@@ -69,11 +69,12 @@ install_pwsh_macos() {
 
 install_pwsh_debian() {
     check_elevation "$@"
-    local os_ver
+    local os_ver codename
     os_ver="$(. /etc/os-release && echo "${VERSION_ID:-11}")"
+    codename="$(. /etc/os-release && echo "${VERSION_CODENAME:-stable}")"
     local repo_url="https://packages.microsoft.com/repos/microsoft-debian${os_ver}-prod"
     curl -fsSL "https://packages.microsoft.com/keys/microsoft.asc" | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
-    echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] ${repo_url} $(. /etc/os-release && echo ${VERSION_CODENAME:-stable}) main" \
+    echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] ${repo_url} ${codename} main" \
         | sudo tee /etc/apt/sources.list.d/microsoft-prod.list > /dev/null
     sudo apt-get update -y
     sudo apt-get install -y powershell
