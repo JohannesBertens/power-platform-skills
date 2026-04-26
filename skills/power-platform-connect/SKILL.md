@@ -15,7 +15,7 @@ Before performing any Power Platform task, verify the `pac` CLI is installed and
 bash skills/power-platform-connect/scripts/check-pac.sh
 ```
 
-### If pac is not installed
+### If pac is not installed or version cannot be determined
 
 1. Inform the user that the Power Platform CLI is required
 2. Provide the install command: `dotnet tool install --global Microsoft.PowerApps.CLI.Tool`

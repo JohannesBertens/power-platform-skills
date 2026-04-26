@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2026-04-26
+
+### Fixed
+
+- **power-platform-connect skill** — documentation updates
+  - SKILL.md now covers the "version could not be determined" error case
+  - Fixed typo `JohannesBohannes` → `JohannesBertens` in docs/setup.md
+  - docs/skills.md "What It Does" updated to include version detection failure path
+
 ## [1.0.3] - 2026-04-26
 
 ### Fixed

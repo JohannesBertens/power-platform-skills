@@ -6,7 +6,7 @@ This document catalogs all Agent Skills available in this repository.
 
 | Skill | Description | Version | Scripts |
 |-------|-------------|---------|---------|
-| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.3 | `check-pac.sh` |
+| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.4 | `check-pac.sh` |
 
 ---
 
@@ -29,10 +29,11 @@ When an agent encounters a Power Platform-related task, this skill activates and
 
 1. Runs `check-pac.sh` to verify the `pac` CLI is installed
 2. Parses the installed version from `pac` output (with fallback to `dotnet tool list --global`)
-3. Fetches the latest version via `dotnet tool search` and compares
-4. If `pac` is missing, provides the user with installation instructions
-5. If `pac` is outdated, suggests the upgrade command
-6. Confirms readiness for Power Platform work once the CLI is installed and up to date
+3. If version cannot be determined, exits with error and suggests reinstalling
+4. Fetches the latest version via `dotnet tool search` and compares
+5. If `pac` is missing, provides the user with installation instructions
+6. If `pac` is outdated, suggests the upgrade command
+7. Confirms readiness for Power Platform work once the CLI is installed and up to date
 
 ### Files
 

@@ -73,7 +73,7 @@ You can install any skill from this repo into your local agent environment:
 gh skill install JohannesBertens/power-platform-skills
 
 # Specific skill
-gh skill install JohannesBohannes/power-platform-skills power-platform-connect
+gh skill install JohannesBertens/power-platform-skills power-platform-connect
 
 # Pinned to a version
 gh skill install JohannesBertens/power-platform-skills power-platform-connect --pin v1.0.0
