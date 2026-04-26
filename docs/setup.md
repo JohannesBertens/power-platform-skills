@@ -23,11 +23,18 @@ power-platform-skills/
 │   └── publishing.md           # Publishing and lifecycle management
 ├── plans/                      # Implementation plans and decisions
 ├── skills/                     # Agent Skills (primary skill directory)
-│   └── power-platform-connect/ # Skill: Power Platform CLI check
+│   └── power-platform-connect/ # Skill: Power Platform CLI bootstrap
 │       ├── SKILL.md            # Skill definition (required)
 │       ├── README.md           # Detailed skill documentation
 │       └── scripts/            # Skill helper scripts
-│           └── check-pac.sh
+│           ├── ensure-pwsh.sh  # Unix bootstrapper (Linux, macOS, WSL)
+│           ├── ensure-pwsh.cmd # Windows thin launcher
+│           ├── ensure-pwsh.ps1 # Windows PowerShell 5.1 bootstrapper
+│           ├── check-pac.ps1   # PowerShell 7 entrypoint
+│           └── modules/
+│               ├── Common.ps1       # Logging, status markers, retry, version helpers
+│               ├── PrereqTools.ps1  # OS detection, download + verify, Ensure-DotNetSdk
+│               └── PacTools.ps1     # pac discovery, install/update, version lookup
 ├── LICENSE                     # MIT License
 └── README.md                   # Repository overview
 ```
@@ -38,7 +45,9 @@ power-platform-skills/
 |------|----------------|---------|
 | Git | Any recent | Version control |
 | GitHub CLI (`gh`) | v2.90.0+ | `gh skill` commands (install, publish, search, update) |
-| Bash | 3+ | Skill helper scripts |
+| Bash | 3+ | `ensure-pwsh.sh` Unix bootstrapper |
+| PowerShell 7 (`pwsh`) | 7.6.1+ | Skill helper scripts — installed automatically by the bootstrap entrypoint |
+| .NET SDK | 10.0+ | `pac` global tool host — installed automatically by `check-pac.ps1 -Bootstrap` |
 
 Check your `gh` version:
 

@@ -72,7 +72,7 @@ Include the exact commands the agent needs to run, with flags and options.
 
 ```markdown
 ## Commands
-- Check pac CLI: `bash skills/power-platform-connect/scripts/check-pac.sh`
+- Check prerequisites: `bash skills/power-platform-connect/scripts/ensure-pwsh.sh`
 - List environments: `pac env list`
 - Export solution: `pac solution export --path ./solutions/ --name <name>`
 - Import solution: `pac solution import --path ./solutions/<name>.zip`
@@ -89,7 +89,7 @@ Use a three-tier system:
 
 ```markdown
 ## Boundaries
-- Always: Run check-pac.sh before any pac command, follow ALM best practices
+- Always: Run ensure-pwsh.sh before any pac command, follow ALM best practices
 - Ask first: Before deleting environments, modifying managed solutions
 - Never: Commit connection strings, export production data, modify system solution layers
 ```
@@ -146,7 +146,7 @@ You are a Power Platform solution architect.
   - `scripts/` – Helper scripts
 
 ## Commands
-- Check prerequisites: `bash skills/power-platform-connect/scripts/check-pac.sh`
+- Check prerequisites: `bash skills/power-platform-connect/scripts/ensure-pwsh.sh`
 - List environments: `pac env list`
 - Export solution: `pac solution export --path ./solutions/ --name <name>`
 - Unpack solution: `pac solution unpack --zipfile ./solutions/<name>.zip --folder ./src/<name>`
@@ -160,7 +160,7 @@ You are a Power Platform solution architect.
 - Prefix custom publishers
 
 ## Boundaries
-- Always: Run check-pac.sh before pac commands, validate solutions before import
+- Always: Run ensure-pwsh.sh before pac commands, validate solutions before import
 - Ask first: Before deleting environments, exporting from production
 - Never: Commit credentials, modify managed layer directly, skip ALM processes
 ```

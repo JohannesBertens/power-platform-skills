@@ -5,7 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.4] - 2026-04-26
+## [1.1.0] - 2026-04-26
+
+### Added
+
+- **power-platform-connect skill** — modular PowerShell bootstrap and self-healing validation ([plan 004](./plans/004-powershell-migration.md))
+  - `scripts/ensure-pwsh.sh` — Unix bootstrapper (Linux, macOS, WSL): detects OS, installs PowerShell 7 via the correct platform method, delegates to `check-pac.ps1 -Bootstrap`
+  - `scripts/ensure-pwsh.cmd` — Windows thin launcher: invokes Windows PowerShell 5.1 to run `ensure-pwsh.ps1`
+  - `scripts/ensure-pwsh.ps1` — Windows PowerShell 5.1 bootstrapper: installs PowerShell 7 via pinned MSI (SHA256 + Authenticode verified) with `winget` fallback, then delegates to `check-pac.ps1`
+  - `scripts/check-pac.ps1` — PowerShell 7 entrypoint: ensures .NET SDK 10.x, installs or upgrades `pac`, emits final status markers
+  - `scripts/modules/Common.ps1` — shared helpers: consistent log prefixes, `STATUS:` / `REMEDIATION:` / `NEXT_COMMAND:` / `DETAIL:` output contract, retry with exponential backoff, semver parsing/comparison, cross-platform PATH refresh
+  - `scripts/modules/PrereqTools.ps1` — OS and architecture detection, download + SHA256 verification, Authenticode verification (Windows), `Ensure-DotNetSdk` with platform-specific install paths (.NET SDK 10.0.203)
+  - `scripts/modules/PacTools.ps1` — pac discovery, version parsing, NuGet JSON latest-version lookup with `dotnet tool search` fallback, idempotent install and upgrade
+
+### Changed
+
+- **power-platform-connect skill** — updated documentation throughout
+  - `SKILL.md`: switched prerequisite command from `check-pac.sh` to the bootstrap entrypoint; documented status markers and remediation pattern
+  - `README.md`: describes the modular layout, all scripts, self-healing behavior, output contract, and pinned versions
+  - `docs/setup.md`: updated directory tree and prerequisites table to reflect PowerShell and .NET SDK requirements
+  - `docs/skills.md`: updated skill catalog row (version → v1.1.0, scripts list)
+  - `docs/agents.md`: replaced `check-pac.sh` references with `ensure-pwsh.sh` in commands and boundaries sections
+  - `README.md`: updated top-level skill description
+
+### Removed
+
+- `scripts/check-pac.sh` — replaced by the PowerShell-based bootstrap system
+
+
 
 ### Fixed
 

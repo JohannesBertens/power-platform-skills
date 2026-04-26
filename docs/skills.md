@@ -6,13 +6,13 @@ This document catalogs all Agent Skills available in this repository.
 
 | Skill | Description | Version | Scripts |
 |-------|-------------|---------|---------|
-| [power-platform-connect](#power-platform-connect) | Validates `pac` CLI installation and checks for updates | v1.0.4 | `check-pac.sh` |
+| [power-platform-connect](#power-platform-connect) | Bootstraps `pwsh`, `.NET SDK`, and `pac` CLI; checks for updates; self-healing | v1.1.0 | `ensure-pwsh.sh`, `ensure-pwsh.cmd`, `ensure-pwsh.ps1`, `check-pac.ps1` |
 
 ---
 
 ## power-platform-connect
 
-Validates `pac` CLI installation and checks for updates.
+Bootstraps `pwsh`, `.NET SDK`, and `pac` CLI; validates the installation; and auto-upgrades outdated versions.
 
 → **Full documentation:** [`skills/power-platform-connect/README.md`](../skills/power-platform-connect/README.md)
 
