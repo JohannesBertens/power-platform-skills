@@ -9,25 +9,45 @@ license: MIT
 
 ## Prerequisites Check
 
-Before performing any Power Platform task, verify the `pac` CLI is installed and up to date by running:
+Before performing any Power Platform task, run the bootstrap entrypoint to ensure `pwsh`, `.NET SDK`, and `pac` are all present and up to date.
+
+### Linux / macOS / WSL
 
 ```bash
-bash skills/power-platform-connect/scripts/check-pac.sh
+bash skills/power-platform-connect/scripts/ensure-pwsh.sh
 ```
 
-### If pac is not installed or version cannot be determined
+### Windows
 
-1. Inform the user that the Power Platform CLI is required
-2. Provide the install command: `dotnet tool install --global Microsoft.PowerApps.CLI.Tool`
-3. Alternatively point to: https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction
-4. After installation, re-run the check script to confirm
+```cmd
+skills\power-platform-connect\scripts\ensure-pwsh.cmd
+```
 
-### If pac is installed but outdated
+### When pwsh is already available
 
-1. Inform the user of the installed and latest versions
-2. Suggest upgrading with: `dotnet tool update --global Microsoft.PowerApps.CLI.Tool`
-3. After upgrading, re-run the check script to confirm
+```bash
+pwsh skills/power-platform-connect/scripts/check-pac.ps1
+```
 
-### If pac is installed and up to date
+## Reading the Output
 
-Report the installed version and confirm readiness for Power Platform tasks.
+The scripts emit machine-readable status markers that you can act on directly:
+
+| Marker | Meaning |
+|--------|---------|
+| `STATUS: OK` | `pac` is installed and up to date |
+| `STATUS: DEGRADED (latest-version-unavailable)` | `pac` is installed but latest-version lookup failed; treat as a warning |
+| `STATUS: ACTION_REQUIRED (pwsh-missing)` | PowerShell 7 could not be installed automatically |
+| `STATUS: ACTION_REQUIRED (dotnet-missing)` | .NET SDK 10.x could not be installed automatically |
+| `STATUS: ACTION_REQUIRED (admin-required)` | Elevation is needed to install a prerequisite |
+| `STATUS: ERROR (pac-install-failed)` | `pac` install step failed |
+
+When `ACTION_REQUIRED` or `ERROR` is emitted, the output also includes:
+
+- `REMEDIATION:` — a single actionable sentence
+- `NEXT_COMMAND:` — the exact command to run next
+- `DETAIL:` — specific version, path, or failure reason
+
+### If an automatic step fails
+
+Follow the `NEXT_COMMAND` in the output. After completing the manual step, re-run the bootstrap entrypoint to continue.

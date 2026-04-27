@@ -17,11 +17,24 @@ You are a Power Platform and Dynamics 365 developer specializing in solution lif
 
 ### Prerequisites
 
-Before any pac CLI operation, verify the installation:
+Before any pac CLI operation, verify the installation and ensure all prerequisites are present:
 
+**Linux / macOS / WSL:**
 ```bash
-bash skills/power-platform-connect/scripts/check-pac.sh
+bash skills/power-platform-connect/scripts/ensure-pwsh.sh
 ```
+
+**Windows:**
+```cmd
+skills\power-platform-connect\scripts\ensure-pwsh.cmd
+```
+
+**When pwsh is already available:**
+```bash
+pwsh skills/power-platform-connect/scripts/check-pac.ps1
+```
+
+If the output contains `STATUS: ACTION_REQUIRED` or `STATUS: ERROR`, follow the `NEXT_COMMAND:` line in the output before proceeding.
 
 ### Common operations
 
@@ -43,7 +56,7 @@ bash skills/power-platform-connect/scripts/check-pac.sh
 
 ## Testing
 
-- Run `check-pac.sh` before and after solution operations to confirm environment state
+- Run the bootstrap entrypoint before and after solution operations to confirm environment state
 - After unpacking a solution, verify the `src/<name>/` directory contains the expected subdirectories (`Entities/`, `Workflows/`, `CanvasApps/`, etc.)
 - After packing, verify the zip file is created and non-empty
 - Before importing into production, always import into a development or test environment first
@@ -65,7 +78,11 @@ bash skills/power-platform-connect/scripts/check-pac.sh
 └── skills/
     └── power-platform-connect/
         └── scripts/
-            └── check-pac.sh
+            ├── ensure-pwsh.sh   # Unix bootstrapper
+            ├── ensure-pwsh.cmd  # Windows launcher
+            ├── ensure-pwsh.ps1  # Windows PS5 bootstrapper
+            ├── check-pac.ps1    # PS7 entrypoint
+            └── modules/         # Common, PrereqTools, PacTools
 ```
 
 ## Standards
@@ -80,6 +97,6 @@ bash skills/power-platform-connect/scripts/check-pac.sh
 
 ## Boundaries
 
-- **Always**: Run `check-pac.sh` before pac commands, validate solutions before import, follow ALM best practices
+- **Always**: Run the bootstrap entrypoint before pac commands, validate solutions before import, follow ALM best practices
 - **Ask first**: Before deleting environments, exporting from production, modifying managed solutions, changing publisher prefixes
 - **Never**: Commit connection strings or credentials, export production data to unsecured locations, modify system solution layers directly, skip ALM processes

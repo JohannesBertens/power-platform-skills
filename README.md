@@ -6,7 +6,7 @@ Agent Skills for Power Platform and Dynamics 365, compatible with GitHub Copilot
 
 | Skill | Description |
 |-------|-------------|
-| [power-platform-connect](./skills/power-platform-connect/) | Validates `pac` CLI installation, checks for updates, and guides setup |
+| [power-platform-connect](./skills/power-platform-connect/) | Bootstraps `pwsh`, `.NET SDK`, and `pac` CLI; validates the installation; self-healing with actionable status markers |
 
 ## Agents
 
